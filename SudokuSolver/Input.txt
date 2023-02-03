@@ -1,0 +1,22 @@
+x17x2x34xx2x6xxxxxxxxxxx5xxxxxxxxxx19xxxx8xxxxx3x6x27xxx1xxxxx63xx9xx41xxxxx4xxx5
+SOLVED ON EVIL 3xxxxxx2xxx68xx3x7x1xx9xxxxxx5xxxx4x9xxx8x5x2xxx2xxx6x6xxxx3xxxxx37xx8x5xxxxxx4xx
+SOLVED ON EXPERT x3x1x74xxxx6xxxx53xxxxx6xxx9x4xxx5xx2xxx3xxx9xxxx4x8xxx2x7xxx8x5xx928xxxxxxxxxx6x
+SOLVED ON HARD xx3xxxx2xx674xxxx55x4xxxx8x435x968xxxx6xxxxxxx817xxxx6x58x2xxx4xxxx7x5xxxxx86xxxx
+
+mk1: Check for isolated possibilities only
+------------------------------------------------------------------------------------
+SOLVED ON MEDIUM xx8xxxx3xxxxx3xxxx7xx1xxxx464xx573xxxx19xx7x2xxx6xxx5xx62378xx5x8xxx9xx3xx4x6x2x8
+SOLVED ON EASY x2xx91xx37xx345x2xxx9xx68xx31x4x9xx56x45xxxx9xx81xx7xx8x3x54xx7xx5x8xxx2x47x1356x
+SOLVED ON EASY 8xxxx61x7xx521x396x9xx5x2xxx7xxx24xxx291x5xx35xxx749xx9xx53xx7261xxxx5492xxx4xx3x
+
+findTuples pseudocode:
+
+Call a checkNum/checkNumSect on the number to make sure it isn't a loner (this will replace the call to those functions)
+Start at the number of squares a given number occupies and go up to 8
+x is the current degree of ther proposed tuple
+Start with the squares occupied by the starting number
+Add to those squares the squares occupied by a number that intersects the current proposed tuple
+Do not add squares if they would go over x
+If it doesn't work try the next intersection (dfs recursive)
+If a tuple is found, check it to see if any smaller tuples are within it
+Remove any numbers not in the tuple
