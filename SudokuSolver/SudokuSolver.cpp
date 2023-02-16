@@ -1,12 +1,12 @@
 #include "SudokuSolver.h"
 
 void SudokuSolver::solve() {
+    int numGuesses = 0;
     int steps = 0;
     //initialize poss
+
     for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            poss[i][j] = 0b111111111;
-        }
+        poss.push_back({ 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111, 0b111111111 });
     }
 
     inputGrid();
@@ -83,11 +83,70 @@ void SudokuSolver::solve() {
             }
 
             //things haven't changed, start guessing
+            //find educated guess
+        findguess:
+            int gX, gY;
+            int minCount = 10;
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (poss[i][j].count() < minCount && poss[i][j].count() > 0) {
+                        gX = j;
+                        gY = i;
+                        minCount = poss[i][j].count();
+                        if (minCount == 2)
+                            goto tryGuess;
+                    }
+                }
+            }
 
+            //if we found no guesses, the puzzle is impossible
+            //go back and remove that possibility from poss
+            if (minCount == 10) {
+                if (pastGrid.size() == 0) {
+                    cout << "Puzzle is impossible!\n";
+                    return;
+                }
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        grid[i][j] = pastGrid.back()[i][j];
+                    }
+                }
+                pastGrid.pop_back();
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 9; j++) {
+                        poss[i][j] = pastPoss.back()[i][j];
+                    }
+                }
+                pastPoss.pop_back();
+
+                tuple<int, int, int> badGuess = guesses.back();
+                poss[get<0>(badGuess)][get<1>(badGuess)][get<2>(badGuess)] = 0;
+                guesses.pop_back();
+                cout << "Popped out of bad guess\n";
+                goto findguess;
+            }
+
+            //push current state onto the stack, make a guess and continue on 
+        tryGuess:
+            numGuesses++;
+            pastGrid.emplace_back(grid);
+            pastPoss.emplace_back(poss);
+            int testGuess;
+            for (int i = 0; i < 9; i++) {
+                if (poss[gY][gX][i]) {
+                    testGuess = i;
+                    break;
+                }
+            }
+            guesses.emplace_back(make_tuple(gY, gX, testGuess));
+            writeNum(testGuess + 1, gY, gX);
+            cout << "Doing new guess\n";
+            goto check;
         }
 
+    cout << "\n";
     printGrid();
-    cout << "Solved in " << steps << " steps.\n";
+    cout << "Solved in " << steps << " steps and " << numGuesses << " guesses.\n";
 }
 
 bool SudokuSolver::isSolved() {
@@ -105,6 +164,10 @@ void SudokuSolver::inputGrid() {
     ifstream input;
     input.open("Input.txt");
     getline(input, rowIns);
+
+    for (int i = 0; i < 9; i++) {
+        grid.push_back({ 0,0,0,0,0,0,0,0,0 });
+    }
 
     /*cout << "Input sudoku grid:\n";
     cin >> rowIns;*/
@@ -146,7 +209,7 @@ void SudokuSolver::writeNum(int num, int row, int col) {
         poss[row][i][num - 1] = 0;
     for (int i = 0; i < 9; i++)
         poss[i][col][num - 1] = 0;
-    
+
     int8_t secY = row / 3;
     int8_t secX = col / 3;
 

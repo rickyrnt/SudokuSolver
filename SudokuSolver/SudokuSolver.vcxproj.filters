@@ -24,12 +24,12 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Input.txt">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SudokuSolver.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,3 +1,10 @@
+55555555555555555555555555555555555555555555555555555555555555555555555xxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx55xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xx53xxxxx8xxxxxx2xx7xx1x5xx4xxxx53xxx1xx7xxx6xx32xxx8xx6x5xxxx9xx4xxxx3xxxxxx97xx
+8xxxxxxxxxx36xxxxxx7xx9x2xxx5xxx7xxxxxxx457xxxxx1xxx3xxx1xxxx68xx85xxx1xx9xxxx4xx
+
+mk2: Use all sudoku strategies
+------------------------------------------------------------------------------------
 x17x2x34xx2x6xxxxxxxxxxx5xxxxxxxxxx19xxxx8xxxxx3x6x27xxx1xxxxx63xx9xx41xxxxx4xxx5
 SOLVED ON EVIL 3xxxxxx2xxx68xx3x7x1xx9xxxxxx5xxxx4x9xxx8x5x2xxx2xxx6x6xxxx3xxxxx37xx8x5xxxxxx4xx
 SOLVED ON EXPERT x3x1x74xxxx6xxxx53xxxxx6xxx9x4xxx5xx2xxx3xxx9xxxx4x8xxx2x7xxx8x5xx928xxxxxxxxxx6x

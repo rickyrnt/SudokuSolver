@@ -3,14 +3,19 @@
 #include <string>
 #include <fstream>
 #include <bitset>
+#include <vector>
+#include <tuple>
 
 using namespace std;
 
 class SudokuSolver {
 
 private:
-	int8_t grid[9][9];
-	bitset<9> poss[9][9];
+	vector<vector<int8_t>> grid;
+	vector<vector<bitset<9>>> poss;
+	vector<vector<vector<int8_t>>> pastGrid;
+	vector<vector<vector<bitset<9>>>> pastPoss;
+	vector<tuple<int, int, int>> guesses;
 
 	void inputGrid();
 	void printGrid();
