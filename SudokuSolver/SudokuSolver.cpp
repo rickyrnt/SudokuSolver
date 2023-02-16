@@ -209,7 +209,7 @@ void SudokuSolver::writeNum(int num, int row, int col) {
         poss[row][i][num - 1] = 0;
     for (int i = 0; i < 9; i++)
         poss[i][col][num - 1] = 0;
-
+    
     int8_t secY = row / 3;
     int8_t secX = col / 3;
 
